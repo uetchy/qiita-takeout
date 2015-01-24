@@ -1,6 +1,6 @@
 # Qiita::Takeout
 
-This gem can take your articles from Qiita to local storage.
+This gem can takes your articles from Qiita to local storage.
 It's assumed to use for backup.
 
 ## Installation
@@ -11,12 +11,19 @@ gem install qiita-takeout
 
 ## Usage
 
-```session
-$ qiita-takeout
-Commands:
-  qiita-takeout dump NAME PASSWORD  # Dump your articles on Qiita.
-  qiita-takeout help [COMMAND]      # Describe available commands or one specific command
-  qiita-takeout version             # Show version
+```shell
+$ qiita-takeout dump [name] [password]
+Dumped => qiita-takeout-20150125
+$ tree qiita-takeout-20150125
+qiita-takeout-20150125
+├── articles.json
+└── images
+    ├── 163015
+    │   └── ss3.png
+    ├── 22393
+    │   └── s1.png
+    └── 31208
+        └── s.png
 ```
 
 ## Contributing
