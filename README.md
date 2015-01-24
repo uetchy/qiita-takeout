@@ -16,14 +16,13 @@ $ qiita-takeout dump [name] [password]
 Dumped => qiita-takeout-20150125
 $ tree qiita-takeout-20150125
 qiita-takeout-20150125
-├── articles.json
-└── images
-    ├── 163015
-    │   └── ss3.png
-    ├── 22393
-    │   └── s1.png
-    └── 31208
-        └── s.png
+├── articles
+│   ├── 22393
+│   │   ├── 2013-07-07-HomebrewでOSXに音声解析エンジンJuliusを入れる.md
+│   │   └── s1.png
+│   └── 31028
+│       └── 2013-11-02-Qiitaの記事をインクリメンタルサーチするAlfred 2 Workflow.md
+└── articles.json
 ```
 
 ## Contributing
