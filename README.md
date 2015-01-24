@@ -1,30 +1,27 @@
 # Qiita::Takeout
 
-TODO: Write a gem description
+This gem can take your articles from Qiita to local storage.
+It's assumed to use for backup.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
-gem 'qiita-takeout'
+gem install qiita-takeout
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install qiita-takeout
 
 ## Usage
 
-TODO: Write usage instructions here
+```session
+$ qiita-takeout
+Commands:
+  qiita-takeout dump NAME PASSWORD  # Dump your articles on Qiita.
+  qiita-takeout help [COMMAND]      # Describe available commands or one specific command
+  qiita-takeout version             # Show version
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/qiita-takeout/fork )
+1. Fork it ( https://github.com/uetchy/qiita-takeout/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
