@@ -4,10 +4,16 @@ require 'open-uri'
 require 'nokogiri'
 require 'fileutils'
 
+require 'pp'
+
 class Qiita::Takeout::CLI < Thor
   desc "dump NAME PASSWORD", "Dump your articles on Qiita."
   def dump(name, password)
     auth = Qiita::Takeout::Connector.auth name, password
+    unless auth
+      puts "Error: invalid credentials. Please confirm your inputs are correct."
+      exit
+    end
     data = Qiita::Takeout::Connector.get(:items, :token => auth['token'])
 
     dest_path = File.join(Qiita::Takeout::OUTPUT_PATH % {:timestamp => Time.now.strftime("%Y%m%d")})
