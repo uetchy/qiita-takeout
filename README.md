@@ -11,7 +11,7 @@ gem install qiita-takeout
 
 ## Usage
 
-```shell
+```console
 $ qiita-takeout dump [name] [password]
 Dumped => qiita-takeout-20150125
 $ tree qiita-takeout-20150125
