@@ -12,15 +12,6 @@ npm install -g qiita-takeout # not yet
 
 ```
 $ qiita-takeout [accessToken]
-$ tree qiita-takeout-20150125
-qiita-takeout-20150125
-├── articles
-│   ├── 22393
-│   │   ├── 2013-07-07-HomebrewでOSXに音声解析エンジンJuliusを入れる.md
-│   │   └── s1.png
-│   └── 31028
-│       └── 2013-11-02-Qiitaの記事をインクリメンタルサーチするAlfred 2 Workflow.md
-└── articles.json
 ```
 
 ## Contributing

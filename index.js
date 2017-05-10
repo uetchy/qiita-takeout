@@ -1,12 +1,17 @@
+#!/usr/bin/env node
+
 const Promise = require('bluebird')
 const fs = require('fs')
 const axios = require('axios')
 const path = require('path')
+const assert = require('assert')
 const parse = require('date-fns/parse')
 const format = require('date-fns/format')
 const mkdir = Promise.promisify(fs.mkdir)
 
-const accessToken = process.env.QIITA_TOKEN
+const accessToken = process.argv[2]
+assert(accessToken, 'invalid accessToken')
+
 const outputPath = './receipts'
 
 async function download(accessToken) {
@@ -39,12 +44,14 @@ async function download(accessToken) {
       const imageResponse = await axios.get(imageURL, {
         responseType: 'arraybuffer'
       })
-      fs.writeFileSync(path.join(outputPath, path.basename(imageURL)), imageResponse.data)
+      fs.writeFileSync(
+        path.join(outputPath, path.basename(imageURL)),
+        imageResponse.data
+      )
     }
   }
 }
 
-download(accessToken)
-  .catch(error => {
-    console.log(error)
-  })
+download(accessToken).catch(error => {
+  console.log(error)
+})

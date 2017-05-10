@@ -9,5 +9,11 @@
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
     "date-fns": "^1.28.4"
+  },
+  "scripts": {
+    "start": "node ."
+  },
+  "bin": {
+    "qiita-takeout": "index.js"
   }
 }
