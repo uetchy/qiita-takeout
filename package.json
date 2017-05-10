@@ -1,0 +1,13 @@
+{
+  "name": "qiita-takeout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/uetchy/qiita-takeout.git",
+  "author": "Yasuaki Uechi <uetchy@randompaper.co> (https://randompaper.co/)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "bluebird": "^3.5.0",
+    "date-fns": "^1.28.4"
+  }
+}
