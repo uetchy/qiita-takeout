@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 const Promise = require('bluebird')
-const fs = require('fs')
+const fs = Promise.promisifyAll(require('fs'))
 const axios = require('axios')
 const path = require('path')
 const assert = require('assert')
 const parse = require('date-fns/parse')
 const format = require('date-fns/format')
-const mkdir = Promise.promisify(fs.mkdir)
 
 const accessToken = process.argv[2]
 assert(accessToken, 'invalid accessToken')
@@ -16,7 +15,7 @@ const outputPath = './receipts'
 
 async function download(accessToken) {
   try {
-    await mkdir(outputPath)
+    await fs.mkdirAsync(outputPath)
   } catch (error) {}
 
   const response = await axios.get(
@@ -35,19 +34,28 @@ async function download(accessToken) {
     content += '---\n\n'
     content += item.body
     filename = `${format(parse(item.created_at), 'YYYY-MM-DD')}-${item.id}.md`
-    fs.writeFileSync(path.join(outputPath, filename), content)
+    
+    try {
+      await fs.writeFileAsync(path.join(outputPath, filename), content)
+    } catch (error) {
+      console.log('Failed to write the content:', error)
+    }
 
     // download images
     imageRegex = /\!\[.*\]\((https:\/\/qiita-image-store\.s3\.amazonaws\.com\/.+)\)/g
     while ((matches = imageRegex.exec(item.body))) {
       const imageURL = matches[1]
-      const imageResponse = await axios.get(imageURL, {
-        responseType: 'arraybuffer'
-      })
-      fs.writeFileSync(
-        path.join(outputPath, path.basename(imageURL)),
-        imageResponse.data
-      )
+      try {
+        const imageResponse = await axios.get(imageURL, {
+          responseType: 'arraybuffer'
+        })
+        await fs.writeFileAsync(
+          path.join(outputPath, path.basename(imageURL)),
+          imageResponse.data
+        )
+      } catch (error) {
+        console.log('Failed to write the image:', error)
+      }
     }
   }
 }
