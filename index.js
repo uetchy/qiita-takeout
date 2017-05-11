@@ -34,11 +34,11 @@ async function download(accessToken) {
     content += '---\n\n'
     content += item.body
     filename = `${format(parse(item.created_at), 'YYYY-MM-DD')}-${item.id}.md`
-    
+
     try {
       await fs.writeFileAsync(path.join(outputPath, filename), content)
     } catch (error) {
-      console.log('Failed to write the content:', error)
+      Promise.reject('Failed to write the content')
     }
 
     // download images
@@ -54,7 +54,7 @@ async function download(accessToken) {
           imageResponse.data
         )
       } catch (error) {
-        console.log('Failed to write the image:', error)
+        Promise.reject('Failed to write the image')
       }
     }
   }
